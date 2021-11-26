@@ -1,0 +1,27 @@
+{
+  "name": "projeto-final-m-dulo-4-resilia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaiCostaAlves/Projeto-Final-M-dulo-4-Resilia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaiCostaAlves/Projeto-Final-M-dulo-4-Resilia/issues"
+  },
+  "homepage": "https://github.com/TaiCostaAlves/Projeto-Final-M-dulo-4-Resilia#readme",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
