@@ -4,11 +4,22 @@ const Menu = require('../models/Menu.js')
 const bdMenu = require('../infra/sqlite-db');
 module.exports = (app) => {
   const menu_Dao = new Menu_DAO(bdMenu);
-  app.get("/", async (req, res) => {
-    console.log('Rodando')
+  app.get("/menu", async (req, res) => {
+    console.log('id')
     // bdCaixa.all('SELECT * FROM MENU', (err, linhas) => {
     try {
       const respMenu = await menu_Dao.select_menu();
+      res.status(200).json(respMenu)
+    } catch (error) {
+      res.status(404).json({ error })
+    }
+  })
+  app.get("/menu/:id", async (req, res) => {
+    const idMenu = req.params.id
+    console.log(idMenu)
+    // bdCaixa.all('SELECT * FROM MENU', (err, linhas) => {
+    try {
+      const respMenu = await menu_Dao.select_menu_id(idMenu);
       res.status(200).json(respMenu)
     } catch (error) {
       res.status(404).json({ error })
@@ -44,6 +55,16 @@ module.exports = (app) => {
       res.status(404).json({ error })
     }
   })
-
+  app.delete("/excluir/:id", async (req, res) => {
+    console.log(req.body)
+    // bdCaixa.all('SELECT * FROM MENU', (err, linhas) => {
+      const menurecebido = req.params.id
+    try {
+      const respMenu = await menu_Dao.delete_menu(menurecebido);
+      res.status(200).json(respMenu)
+    } catch (error) {
+      res.status(404).json({ error })
+    }
+  })
 }
 

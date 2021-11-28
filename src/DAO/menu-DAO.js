@@ -3,9 +3,25 @@ class MenuDAO {
         this._bdMenu = bdMenu
 
     }
+    
     select_menu() {
         return new Promise((resolve, reject) => {
             this._bdMenu.all('SELECT * FROM MENU', (err, linhas)=>{
+                    if (err) {
+                    reject(({ "mensagem": err.message, "error": true }))
+                } else {
+                    resolve({
+                        "menus": linhas,
+                        "count": linhas.length,
+                        "error": false
+                    })
+                }
+            })
+        })
+    }
+    select_menu_id(id){
+        return new Promise((resolve, reject) => {
+            this._bdMenu.all(`SELECT * FROM MENU WHERE ID = ${id}`, (err, linhas)=>{
                     if (err) {
                     reject(({ "mensagem": err.message, "error": true }))
                 } else {
@@ -27,12 +43,12 @@ class MenuDAO {
             `, [novoMenu.produto, novoMenu.categoria, novoMenu.valor], (error) => {
                 if (error) {
                     reject({
-                        "pagamento": error.message,
+                        "menu": error.message,
                         "erro": true
                     })
                 } else {
                     resolve({
-                        "pagamento": novoMenu,
+                        "menu": novoMenu,
                         "erro": false
                     })
                 }
@@ -47,12 +63,31 @@ class MenuDAO {
             `, [alterMenu.produto, alterMenu.categoria, alterMenu.valor], (error) => {
                 if (error) {
                     reject({
-                        "pagamento": error.message,
+                        "menu": error.message,
                         "erro": true
                     })
                 } else {
                     resolve({
-                        "pagamento": alterMenu,
+                        "menu": alterMenu,
+                        "erro": false
+                    })
+                }
+            })
+        })
+    }
+    delete_menu(id) {
+        return new Promise((resolve, reject) => {
+            this._bdMenu.run(`
+           DELETE FROM MENU WHERE ID = ${id}
+            `, (error) => {
+                if (error) {
+                    reject({
+                        "menu": error.message,
+                        "erro": true
+                    })
+                } else {
+                    resolve({
+                        "mensage": "excluído com sucesso",
                         "erro": false
                     })
                 }
