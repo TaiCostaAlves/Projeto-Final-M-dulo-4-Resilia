@@ -15,4 +15,18 @@ module.exports = () => {
         .into(app) // informo onde eu quero que o gerenciador inclua.
 
     return app
-}
+}app.use(express.json());
+app.use((req, res, next) => {
+  console.log(req.body)
+  const body = req.body
+  // if(!body.usuarios){
+  //   res.status(403).send('Quem é vc')
+  // }
+  // if(body.usuarios === "Fer") {
+  //   res.status(403).send('Vc não pode logar')
+  // }
+  // else {
+  next()
+ //}
+  
+})
