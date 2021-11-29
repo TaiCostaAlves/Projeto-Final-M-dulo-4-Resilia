@@ -12,28 +12,31 @@ class Menu {
         this.categoria = this.verificaCategoria(categoria)
         this.valor = this.verificaValor(valor)
     }
-
-    verificaValor(valor){
-        if(valor !== "" ){
-            return valor
+    verificaProduto(produto){
+        if(produto !== "" ){
+            return produto
         }else {
-            console.log('erro valor')
+          return 0
         }
     }
     verificaCategoria(categoria){
         if(categoria !== "" ){
             return categoria
         }else {
-            console.log('erro categoria')
+            return 0
         }
     }
-    verificaProduto(produto){
-        if(produto !== "" ){
-            return produto
+    verificaValor(valor){
+        if(valor >= 0  || valor !== ''){
+            return valor
         }else {
-            console.log('erro produto')
+            return -1  
+          
         }
     }
+    
 }
+
+
 
 module.exports = Menu
